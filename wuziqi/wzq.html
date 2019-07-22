@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{padding:0;margin:0}
+        #gamebj,.wzq{
+            background:#fff;
+            width:435px;
+            height:435px;
+            border:2px solid #000;
+            border-collapse:collapse;
+            margin-top: 50px;
+            margin-left: 100px;
+        }
+        .bj td,.wzq td{
+            width:15px;
+            height:15px;
+            border:1px solid #ddd;
+
+        }
+        .game{
+            width:800px;
+            height:600px;
+            margin:0 auto;
+            border:1px solid #000;
+            position: relative;
+        }
+        .wzq{
+            width:465px;
+            height:465px;
+            position: absolute;
+            top: -15px;
+            left:-15px;
+            background-color: transparent;
+            border: 0px;
+
+        }
+        .wzq td{
+            border: 0px;
+        }
+        #game-g{
+            margin-top: 20px;
+        }
+
+    </style>
+    <script>
+        function loding(){
+            var str="";
+            for(var a=0;a<14;a++){
+                str+=`<tr>`;
+                for(var b=0;b<14;b++){
+                    str+=`<td></td>`;
+                }
+                str+=`</tr>`;
+            }
+            gamebj.innerHTML=str;
+            var str1="";
+            for(var a=0;a<15;a++){
+                str1+=`<tr>`;
+                for(var b=0;b<15;b++){
+                    str1+=`<td id="p${a*15+b}" px=${a} py=${b}></td>`;
+                }
+                str1+=`</tr>`;
+            }
+            gamewzq.innerHTML=str1;
+
+        }
+        var player=0;
+        var player1=[];
+        var playerx1=[];
+        var playery1=[];
+        var player2=[];
+        var playerx2=[];
+        var playery2=[];
+        var num1 =0;
+        var num2 =0;
+        function xq(e){
+           try{
+               var pid=window.event.toElement.id;
+               var px =window.event.target.attributes.px.value;
+               var py =window.event.target.attributes.py.value;
+               for(let key=0;key<player1.length;key++){
+                   if(player1[key]==pid){
+                       return;
+                   }
+               }
+               for(let key=0;key<player2.length;key++){
+                   if(player2[key]==pid){
+                       return;
+                   }
+               }
+
+               if(player==0){
+
+                   eval(pid).style.background="#000";
+                   eval(pid).style.borderRadius="50%"
+                   player=1;
+                   player1[num1]=pid;
+                   playerx1[num1]=px;
+                   playery1[num1]=py;
+                   num1 +=1;
+
+
+               }else if(player==1){
+                   eval(pid).style.background="#faa";
+                   eval(pid).style.borderRadius="50%"
+                   player=0;
+                   player2[num2]=pid;
+                   playerx2[num2]=px;
+                   playery2[num2]=py;
+                   num2 +=1;s
+
+               }
+
+               //玩家1胜利判断 黑棋
+               console.log(player1);
+               if(player1.length>=5){
+                   //判断x轴胜利
+
+                   console.log(playerx1);
+                   for(let i=0;i<player1.length;i++){
+                       var arrx1 =playerx1.slice(0);
+                       var arry1 =playery1.slice(0);
+                       let strx1=arrx1.splice(i,1);
+                       let stry1=arry1.splice(i,1);
+                       console.log(playerx1,arrx1);
+                       var numx=1;
+                       for(let j=0;j<arrx1.length;j++){
+                           console.log(numx);
+                           if(strx1[0]==arrx1[j]){
+                               numx+=1;
+                           }
+                       }
+                       console.log(numx);
+                       if(numx>=5){
+                           alert("黑棋x有5个");
+                           return;
+                       }
+
+                   }
+
+               }
+
+
+           }catch {
+
+           }
+
+
+        }
+
+    </script>
+
+    </script>
+
+</head>
+<body onload="loding()" onmouseup="xq(window.event)">
+    <div class="game"  >
+
+        <table class="bj" id="gamebj" >
+
+        </table>
+        <table class="wzq" id="gamewzq">
+
+        </table>
+        <div id="game-g">
+            <button id="game-s" >开始</button>
+            <button id="game-r" >从新开始</button>
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>

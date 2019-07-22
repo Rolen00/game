@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #d{
+            width: 134px;
+            height: 200px;
+            background-image: url("xy_imgs/west_01_3ca39fe.png");
+            background-repeat: no-repeat;
+            background-position-x:-43px;
+        }
+
+    </style>
+
+</head>
+<body>
+ <div id="d" style="background-position-x:-43px;">
+     11111
+ </div>
+ <script>
+
+    var times=setInterval(function (){
+        var a=d.style.backgroundPositionX;1`
+        var b= a.substring(0,a.indexOf("p",0));
+        if(b<-1400){
+            b=157;
+        }
+        var c=b-200+"px";
+        d.style.backgroundPositionX=c;
+    },200);
+ </script>
+
+</body>
+</html>
